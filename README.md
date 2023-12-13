@@ -132,7 +132,7 @@ We suggest to implement first the simple case where you expand wildcards in the 
 
 ### Contact Info
 
-Git: [Ntokozo Vilakazi](https://github.com/sprusrxeroxx), [John Adebiyi](https://github.com/dennisnderitu254)
+Git: [Ntokozo Vilakazi](https://github.com/sprusrxeroxx)
 
 # Tasks
 

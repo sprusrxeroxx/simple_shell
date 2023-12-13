@@ -12,7 +12,7 @@ int cd(char **args)
 	char cwd[1024];
 
 	if (args[1] == NULL){
-		if (getcwd(cwd, sizeof(cwd)) != NULL || args[1] == "-")
+		if (getcwd(cwd, sizeof(cwd)) != NULL)
 		{
 			printf("No directory given as an argument.\nThe current working directory is: %s\n", cwd);
 		}
@@ -40,11 +40,11 @@ int cd(char **args)
 }
 
 /*internal function clr, clears the terminal screen by using an ANSI escape sequence*/
-int clr(char **args)
+int clr(void)
 {
 	/*this specific escape sequence moves all text to above the top line of the terminal*/
 	printf("\e[1;1H\e[2J");
-	return 1;
+	return (1);
 }
 
 /*internal function dir, prints out the contents of the given directory similar to the ls command*/
@@ -87,7 +87,7 @@ int dir(char **args)
 }
 
 /*internal function _environ, prints out all of the environment variables*/
-int env(char **args)
+int env(void)
 {
 	int i;
 	/*uses the extern char to gain access to the environment variables*/
@@ -119,7 +119,7 @@ int echo(char **args)
 }
 
 /*internal function help, brings up the instructions for using my shell*/
-int help(char **args)
+int help(void)
 {
 	/*declaration of variables used for opening and displaying the readme
 	 *the value of totalLines is specific to the readme included*/
@@ -169,7 +169,7 @@ int help(char **args)
 }
 
 /*internal function _pause, uses a loop and getchar to wait for user to input "enter" before returning control*/
-int _pause(char **args)
+int _pause(void)
 {
 	char c;
 	/*display pause message*/
@@ -197,14 +197,14 @@ int set_env_var(char **args)
 	if (strlen(args[2]) > MAX_VAR_NAME_LEN || strlen(args[3]) > MAX_VAR_VALUE_LEN)
 	{
 		fprintf(stderr, "Error: Variable name or value is too long.\n");
-		return 1;
+		return (1);
 	}
 
 	char *new_env = malloc(strlen(args[2]) + strlen(args[3]) + 2);
 	if (!new_env)
 	{
 		fprintf(stderr, "Error: Memory allocation failed.\n");
-		return 1;
+		return (1);
 	}
 
 	strcpy(new_env, args[2]);
@@ -215,9 +215,9 @@ int set_env_var(char **args)
 	{
 		fprintf(stderr, "Error: Failed to set environment variable '%s'.\n", args[2]);
 		free(new_env);
-		return 1;
+		return (1);
 	}
 
 	free(new_env);
-	return 0;
+	return (0);
 }

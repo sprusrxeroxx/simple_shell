@@ -32,12 +32,12 @@ int pipes(char **args);
 
 
 int cd(char **args);
-int clr(char **args);
+int clr(void);
 int dir(char **args);
-int env(char **args);
+int env(void);
 int echo(char **args);
-int help(char **args);
-int _pause(char **args);
+int help(void);
+int _pause(void);
 int quit(char **args);
 int set_env_var(char **args);
 

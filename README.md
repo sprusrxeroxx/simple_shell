@@ -128,7 +128,7 @@ We suggest to implement first the simple case where you expand wildcards in the 
 
 ## Linked in Reference
 
-[Linked In](https://link-url-here.org)
+[Linked In](https://www.linkedin.com/in/ntokozovilakazi-56137324b)
 
 ### Contact Info
 

@@ -40,11 +40,16 @@ int cd(char **args)
 }
 
 /*internal function clr, clears the terminal screen by using an ANSI escape sequence*/
-int clr(void)
+int clr(char **args)
 {
+	if (args[1] == NULL){ 
 	/*this specific escape sequence moves all text to above the top line of the terminal*/
 	printf("\033[1;1H\033[2J");
-	return (1);
+	}else{
+		perror("No argument expected");
+	}
+	
+	return (0);
 }
 
 /*internal function dir, prints out the contents of the given directory similar to the ls command*/
@@ -88,18 +93,23 @@ int dir(char **args)
 }
 
 /*internal function _environ, prints out all of the environment variables*/
-int env(void)
+int env(char **args)
 {
 	int i;
 	/*uses the extern char to gain access to the environment variables*/
 	char *s = *environ;
 
+	if (args[1] == NULL){
 	/*cycles through and prints out each environment variable one per line*/
 	for (i = 1; s; i++)
 	{
 		printf("%s\n", s);
 		s = *(environ + i);
 	}
+		}else{
+			perror("No argument expected");
+			return (1);
+		}
 
 	return 1;
 }
@@ -120,7 +130,7 @@ int echo(char **args)
 }
 
 /*internal function help, brings up the instructions for using my shell*/
-int help(void)
+int help(char **args)
 {
 	/*declaration of variables used for opening and displaying the readme
 	 *the value of totalLines is specific to the readme included*/
@@ -128,7 +138,9 @@ int help(void)
 	int lineCount = 0;
 	int totalLines = 100;
 	char ch[256];
+	
 
+	if (args[1] == NULL){
 	/*check the current directory to find and open readme*/
 	fp = fopen("./readme", "r");
 	if (fp == NULL)
@@ -167,11 +179,17 @@ int help(void)
 	}
 
 	return 1;
+	}
+	else{
+		perror("function does not take arguement");
+	};
+	return (0);
 }
 
 /*internal function _pause, uses a loop and getchar to wait for user to input "enter" before returning control*/
-int _pause(void)
+int _pause(char **args)
 {
+	if (args[1] == NULL){
 	char c;
 	/*display pause message*/
 	printf("PAUSED\n");
@@ -179,6 +197,10 @@ int _pause(void)
 	while ((c = getchar()) != '\n') {}
 
 	return 1;
+	}else
+	{perror("No argument expected from function");
+	}
+	return (0);
 }
 
 /*internal function quit, returns 0 to status variable which breaks the shell loop*/

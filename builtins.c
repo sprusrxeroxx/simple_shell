@@ -43,7 +43,7 @@ int cd(char **args)
 int clr(void)
 {
 	/*this specific escape sequence moves all text to above the top line of the terminal*/
-	printf("\e[1;1H\e[2J");
+	printf("\033[1;1H\033[2J");
 	return (1);
 }
 
@@ -71,7 +71,7 @@ int dir(char **args)
 	if (dp != NULL)
 	{
 		/*cycles through the elements in the directory and prints them out*/
-		while (ep = readdir(dp))
+		while ((ep = readdir(dp)))
 		{
 			puts(ep->d_name);
 		}
@@ -79,6 +79,7 @@ int dir(char **args)
 		(void) closedir(dp);
 	}
 	else
+
 	{
 		perror("Couldn't open the directory");
 	}

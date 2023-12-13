@@ -18,13 +18,12 @@ int num_internals()
 int execute(char **args)
 {
 	int i;
+	int wait = 0, pipe = 0;
 
 	if (args[0] == NULL)
 	{
 		return (1);
 	}
-
-	int wait = 0, pipe = 0;
 
 
 	for (i = 0; args[i] != NULL; i++)

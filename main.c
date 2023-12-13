@@ -1,54 +1,51 @@
 #include "main.h"
 
+/*main entry point in the code; creates several variables, prints welcome message, begins loop*/
+int main(int argc, char **argv)
+{
+	char *line;
+	char **args;
+	int status = 1;
 
-//main entry point in the code; creates several variables, prints welcome message, begins loop
-int main(int argc, char **argv) {
+	printf("····························\n: __    __          __     :\n:(_ |__|_ | |   |__|_ | |  :\n:__)|  |__|_|__ |  |__|_|__:\n····························\nBY NTK\n\n");
 
-    //declaration of variables to be used for storing the command line
-    char *line;
-    char **args;
-    int status = 1;
+	do {
+		char buf[PATH_MAX + 1];
+		char *cwd = getcwd(buf, PATH_MAX + 1);
+		printf("$");
 
-    //prints welcome message
-    printf("····························\n: __    __          __     :\n:(_ |__|_ | |   |__|_ | |  :\n:__)|  |__|_|__ |  |__|_|__:\n····························\nBY NTK\n\n");
+		if (argc < 2)
+		{
+			line = read_line();
+			args = parse_line(line);
+			status = execute(args);
+		}
+		else
+		{
+			FILE * fp;
+			line = NULL;
+			size_t len = 0;
 
-    //begin run of the loop
-    do {
-        //gets current directory
-        char buf[PATH_MAX + 1];
-        char *cwd = getcwd(buf, PATH_MAX + 1);
-        printf("$");
+			fp = fopen(argv[1], "r");
+			if (fp == NULL)
+			{
+				exit(EXIT_FAILURE);
+			}
 
-        //determines whether a command line argument was passed or not
-        if (argc < 2) {
-            //no command file
-            line = read_line();
-            args = parse_line(line);
-            status = execute(args);
-        } else {
-            //given a command file, must open and read lines from the file
-            FILE *fp;
-            line = NULL;
-            size_t len = 0;
+			while (((getline(&line, &len, fp)) != -1) && (status != 0))
+			{
+				printf("%s", line);
+				args = parse_line(line);
+				status = execute(args);
+			}
 
-            //error check the opening of the file
-            fp = fopen(argv[1], "r");
-            if (fp == NULL) {
-                exit(EXIT_FAILURE);
-            }
+			status = 0;
+			fclose(fp);
+		}
 
-            //loop through the file and execute each line
-            while (((getline(&line, &len, fp)) != -1) && (status != 0)) {
-                printf("%s", line);
-                args = parse_line(line);
-                status = execute(args);
-            }
-            status = 0;
-            fclose(fp);
-        }
-        free(line);
-        free(args);
-    } while (status);
+		free(line);
+		free(args);
+	} while (status);
 
-    return EXIT_SUCCESS;
+	return (EXIT_SUCCESS);
 }

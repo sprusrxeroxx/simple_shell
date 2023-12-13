@@ -29,7 +29,7 @@ int cd(char **args)
 			perror("Error changing directory");
 		}
 
-		//gets the new directory and sets the environment variable PWD to it
+		/*gets the new directory and sets the environment variable PWD to it*/
 		if (getcwd(cwd, sizeof(cwd)) != NULL)
 		{
 			setenv("PWD", cwd, 1);
@@ -194,13 +194,14 @@ int quit(char **args)
 
 int set_env_var(char **args)
 {
+	char *new_env = malloc(strlen(args[2]) + strlen(args[3]) + 2);
+
 	if (strlen(args[2]) > MAX_VAR_NAME_LEN || strlen(args[3]) > MAX_VAR_VALUE_LEN)
 	{
 		fprintf(stderr, "Error: Variable name or value is too long.\n");
 		return (1);
 	}
 
-	char *new_env = malloc(strlen(args[2]) + strlen(args[3]) + 2);
 	if (!new_env)
 	{
 		fprintf(stderr, "Error: Memory allocation failed.\n");

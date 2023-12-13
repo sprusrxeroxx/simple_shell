@@ -9,7 +9,7 @@
 char *read_line(void)
 {
 	char *line = NULL;
-	ssize_t bufsize = 0;
+	size_t bufsize = 0;
 
 	getline(&line, &bufsize, stdin);
 	return (line);

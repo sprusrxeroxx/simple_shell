@@ -10,8 +10,9 @@ int main(int argc, char **argv)
 	printf("····························\n: __    __          __     :\n:(_ |__|_ | |   |__|_ | |  :\n:__)|  |__|_|__ |  |__|_|__:\n····························\nBY NTK\n\n");
 
 	do {
-		char buf[PATH_MAX + 1];
-		char *cwd = getcwd(buf, PATH_MAX + 1);
+		size_t len = 0;
+		FILE * fp;
+
 		printf("$");
 
 		if (argc < 2)
@@ -22,9 +23,7 @@ int main(int argc, char **argv)
 		}
 		else
 		{
-			FILE * fp;
 			line = NULL;
-			size_t len = 0;
 
 			fp = fopen(argv[1], "r");
 			if (fp == NULL)

@@ -196,3 +196,4 @@ int pipes(char **args)
 	close(fd[1]);
 	return (1);
 }
+

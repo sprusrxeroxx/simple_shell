@@ -245,3 +245,4 @@ int set_env_var(char **args)
 	free(new_env);
 	return (0);
 }
+

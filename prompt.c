@@ -1,5 +1,5 @@
 #include "main.h"
 
-void display_prompt(void) {
+void show_prompt(void) {
 	PRINT("$ ");
 }

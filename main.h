@@ -14,9 +14,9 @@
 /*
  *thebse aibfbskf
  */
-void display_prompt(void);
+void show_prompt(void);
 void PRINT(const char *message);
-void read_command(char *command, size_t size);
+void parse_command(char *command, size_t size);
 void execute_command(const char *command);
 
 

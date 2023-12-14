@@ -6,14 +6,16 @@ int main(int argc, char **argv)
 	char *line;
 	char **args;
 	int status = 1;
+	char *welcome = "WELCOME TO MY SHELL\nBY NTK\nTHE GATES OF SHELL\n";
 
-	printf("····························\n: __    __          __     :\n:(_ |__|_ | |   |__|_ | |  :\n:__)|  |__|_|__ |  |__|_|__:\n····························\nBY NTK\n\n");
+	write(STDOUT_FILENO, welcome, strlen(welcome));
 
 	do {
 		size_t len = 0;
 		FILE * fp;
+		const char *prompt = " $";
 
-		printf(" ($)");
+		write(STDOUT_FILENO, prompt, strlen(prompt));
 
 		if (argc < 2)
 		{
@@ -33,7 +35,7 @@ int main(int argc, char **argv)
 
 			while (((getline(&line, &len, fp)) != -1) && (status != 0))
 			{
-				printf("%s", line);
+				write(STDOUT_FILENO, line, strlen(line));
 				args = parse_line(line);
 				status = execute(args);
 			}

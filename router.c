@@ -61,7 +61,7 @@ int redirection(char **args)
 			int fd0;
 			if ((fd0 = open(args[j + 1], O_RDONLY)) < 0)
 			{
-				printf("error opening %s for reading\n", args[j + 1]);
+				perror("error opening file for reading\n");
 				fargs = 0;
 			}
 
@@ -74,7 +74,7 @@ int redirection(char **args)
 			int fd1;
 			if ((fd1 = open(args[k + 1], O_RDWR | O_CREAT | O_TRUNC, 0666)) < 0)
 			{
-				printf("error opening %s for writing\n", args[k + 1]);
+				perror("error opening file for writing\n");
 				fargs = 0;
 			}
 
@@ -87,7 +87,7 @@ int redirection(char **args)
 			int fd1;
 			if ((fd1 = open(args[l + 1], O_RDWR | O_CREAT | O_APPEND, 0666)) < 0)
 			{
-				printf("error opening %s for writing\n", args[l + 1]);
+				perror("error opening file for writing\n");
 				fargs = 0;
 			}
 
@@ -148,7 +148,7 @@ int pipes(char **args)
 
 	if (pipe(fd) == -1)
 	{
-		printf("pipe error\n");
+		perror("pipe error\n");
 		return (EXIT_FAILURE);
 	}
 

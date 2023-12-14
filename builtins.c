@@ -14,7 +14,7 @@ int cd(char **args)
 	if (args[1] == NULL){
 		if (getcwd(cwd, sizeof(cwd)) != NULL)
 		{
-			printf("No directory given as an argument.\nThe current working directory is: %s\n", cwd);
+			perror("No directory given as an argument");
 		}
 		else
 		{
@@ -64,7 +64,9 @@ int dir(char **args)
 		/*no argument given, prints out the current working directory*/
 		char buf[PATH_MAX + 1];
 		char *cwd = getcwd(buf, PATH_MAX + 1);
-		printf("No directory given as an argument.\nThe current working directory is: %s\n", cwd);
+
+		write(STDOUT_FILENO, cwd, strlen(cwd));
+		perror("NO ARGUMENT PROVIDED");
 		dp = opendir(cwd);
 	}
 	else
@@ -98,12 +100,14 @@ int env(char **args)
 	int i;
 	/*uses the extern char to gain access to the environment variables*/
 	char *s = *environ;
+	char *newline = "\n";
 
 	if (args[1] == NULL){
 	/*cycles through and prints out each environment variable one per line*/
 	for (i = 1; s; i++)
 	{
-		printf("%s\n", s);
+		write(STDOUT_FILENO, s, strlen(s));
+		write(STDOUT_FILENO, newline, strlen(newline));
 		s = *(environ + i);
 	}
 		}else{
@@ -118,14 +122,15 @@ int env(char **args)
 int echo(char **args)
 {
 	int i = 1;
+	const char *newline = "\n";
 	/*cycles through all arguments after echo and prints them out*/
 	while (args[i] != NULL)
 	{
-		printf("%s ", *(args + i));
+		write(STDOUT_FILENO, *(args + i), strlen(args[i]));
 		i++;
 	}
 
-	printf("\n");
+	write(STDOUT_FILENO, newline, strlen(newline));
 	return 1;
 }
 
@@ -165,7 +170,7 @@ int help(char **args)
 		if (lineCount == 10)
 		{
 			char c;
-			printf("Press 'enter' to read more or press 'q' to quit.\n");
+			perror("Press 'enter' to read more or press 'q' to quit.\n");
 			c = getchar();
 			if (c == 'q')
 			{
@@ -192,7 +197,7 @@ int _pause(char **args)
 	if (args[1] == NULL){
 	char c;
 	/*display pause message*/
-	printf("PAUSED\n");
+	perror("PAUSED\n");
 	/*get next character and do nothing until the user presses 'enter'*/
 	while ((c = getchar()) != '\n') {}
 
@@ -221,13 +226,13 @@ int set_env_var(char **args)
 
 	if (strlen(args[2]) > MAX_VAR_NAME_LEN || strlen(args[3]) > MAX_VAR_VALUE_LEN)
 	{
-		fprintf(stderr, "Error: Variable name or value is too long.\n");
+		perror("Error: Variable name or value is too long.\n");
 		return (1);
 	}
 
 	if (!new_env)
 	{
-		fprintf(stderr, "Error: Memory allocation failed.\n");
+		perror("Error: Memory allocation failed.\n");
 		return (1);
 	}
 
@@ -237,7 +242,7 @@ int set_env_var(char **args)
 
 	if (setenv(args[2], args[3], 1) != 0)
 	{
-		fprintf(stderr, "Error: Failed to set environment variable '%s'.\n", args[2]);
+		perror("Error: Failed to set environment variable");
 		free(new_env);
 		return (1);
 	}

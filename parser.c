@@ -24,7 +24,7 @@ char **parse_line(char *line)
 
 	if (!tokens)
 	{
-		fprintf(stderr, "Error allocating memory.\n");
+		perror("Error allocating memory.\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -43,7 +43,7 @@ char **parse_line(char *line)
 			if (!tokens)
 			{
 				free(tokens_backup);
-				fprintf(stderr, "Error allocating memory.\n");
+				perror("Error allocating memory.\n");
 				exit(EXIT_FAILURE);
 			}
 		}
@@ -53,5 +53,6 @@ char **parse_line(char *line)
 
 	tokens[position] = NULL;
 	return (tokens);
+	free(tokens);
 }
 

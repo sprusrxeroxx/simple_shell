@@ -36,15 +36,15 @@ int main(int argc, char **argv, char **envp)
 		}
 		tokens = strtok_helper(line, " ,\n");
 		cmd = tokens[0];
-		if (compare(cmd) == -1)
+		if (look_up(cmd) == -1)
 		{
 			updpath = pathfinder(cmd);
 			if (builtin_helper(cmd) == -1)
 				execute(updpath, tokens, envp);
 		}
-		else if (compare(cmd) == 0)
+		else if (look_up(cmd) == 0)
 			execute(cmd, tokens, envp);
-		else if (compare(cmd) == 1)
+		else if (look_up(cmd) == 1)
 			write(1, "command not found\n", 18);
 	}
 	free(line);

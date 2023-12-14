@@ -16,7 +16,7 @@
 #include <sys/wait.h>
 
 
-int compare(char *string);
+int look_up(char *string);
 char **strtok_helper(char *line, char *delim);
 char *_realloc(char *ptr, int old_size, int new_size);
 char *_memcpy(char *dest, char *src, unsigned int n);

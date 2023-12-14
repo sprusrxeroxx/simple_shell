@@ -6,7 +6,7 @@
  * Return: int
  */
 
-int compare(char *string)
+int look_up(char *string)
 {
 	int i = 0;
 

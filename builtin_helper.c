@@ -8,10 +8,10 @@
 int builtin_helper(char *s)
 {
 
-	char *ex = "exit";
+	char *x = "exit";
 	char *en = "env";
 
-	if (_strncmp(s, ex, 6) == 0)
+	if (_strncmp(s, x, 6) == 0)
 		exit(EXIT_SUCCESS);
 	if (_strncmp(s, en, 5) == 0)
 	{

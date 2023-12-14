@@ -13,7 +13,7 @@ char *_strcat(char *dest, char *src)
 	char *append = dest;
 
 	/* ignore the null byte in both strings */
-	if ((dest != '\0') && (src != '\0'))
+	if ((*dest != '\0') && (*src != '\0'))
 	{
 		/* loop through the dest string, ignoring the null byte */
 		while (*dest != '\0')

@@ -21,7 +21,7 @@ int main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO) == 1)
-			write(1, "JJS$ ", 5);
+			write(1, "NTK$ ", 5);
 		status = getline(&line, &buff, stdin);
 		if (status == -1)
 		{

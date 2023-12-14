@@ -126,7 +126,7 @@ int echo(char **args)
 	/*cycles through all arguments after echo and prints them out*/
 	while (args[i] != NULL)
 	{
-		write(STDOUT_FILENO, *(args + i), strlen(args[i]));
+		printf("%s ", *(args + i));
 		i++;
 	}
 

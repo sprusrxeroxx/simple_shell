@@ -10,7 +10,7 @@ int launch_no_wait(char **args)
 	{
 		if ((execvp(args[0], args)) == -1)
 		{
-			perror("Program invocation has failed");
+			perror("1Program invocation has failed");
 		}
 
 		exit(EXIT_FAILURE);
@@ -104,14 +104,14 @@ int redirection(char **args)
 				args2[1] = '\0';
 				if ((execvp(args[0], args2)) == -1)
 				{
-					perror("Program invocation has failed");
+					perror("2Program invocation has failed");
 				}
 			}
 			else
 			{
 				if ((execvp(args[0], args)) == -1)
 				{
-					perror("Program invocation has failed");
+					perror("3Program invocation has failed");
 				}
 			}
 		}
@@ -162,7 +162,7 @@ int pipes(char **args)
 
 		if ((execlp(args[j - 1], args[j - 1], NULL)) == -1)
 		{
-			perror("Program invocation has failed");
+			perror("4Program invocation has failed");
 		}
 
 		exit(EXIT_FAILURE);
@@ -183,7 +183,7 @@ int pipes(char **args)
 
 			if ((execlp(args[j + 1], args[j + 1], NULL)) == -1)
 			{
-				perror("Program invocation has failed");
+				perror("5Program invocation has failed");
 			}
 		}
 		else if (pid < 0)

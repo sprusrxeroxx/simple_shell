@@ -53,6 +53,5 @@ char **parse_line(char *line)
 
 	tokens[position] = NULL;
 	return (tokens);
-	free(tokens);
 }
 

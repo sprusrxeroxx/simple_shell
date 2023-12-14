@@ -1,64 +1,14 @@
 #include "main.h"
 
-/*
- *IMPORTANT LOOP FUNCTIONS
- *INCLUDES THE FOLLOWING:
- *READLINE, PARSELINE, EXECUTE, LAUNCH
- */
-
-char *read_line(void)
-{
-	char *line = NULL;
-	size_t bufsize = 0;
-
-	getline(&line, &bufsize, stdin);
-	return (line);
+void read_command(char *command, size_t size) {
+    if (fgets(command, size, stdin) == NULL) {
+        if (feof(stdin)) {
+            PRINT("\n");
+            exit(EXIT_SUCCESS);
+        } else {
+            PRINT("Error while reading input.\n");
+            exit(EXIT_FAILURE);
+        }
+    }
+    command[strcspn(command, "\n")] = '\0'; /* Remove newline*/
 }
-
-/**
- * parses the line and returns the array
- * of tokens which will be used as arguments
- *
- *
- *
- */
-
-char **parse_line(char *line)
-{
-	unsigned int  bufsize = TOK_BUFSIZE, position = 0;
-	char **tokens = malloc(bufsize * sizeof(char *));
-	char *token, **tokens_backup;
-
-	if (!tokens)
-	{
-		perror("Error allocating memory.\n");
-		exit(EXIT_FAILURE);
-	}
-
-	token = strtok(line, DELIMITERS);
-
-	while (token != NULL)
-	{
-		tokens[position] = token;
-		position++;
-
-		if (position >= bufsize)
-		{
-			bufsize += TOK_BUFSIZE;
-			tokens_backup = tokens;
-			tokens = realloc(tokens, bufsize * sizeof(char *));
-			if (!tokens)
-			{
-				free(tokens_backup);
-				perror("Error allocating memory.\n");
-				exit(EXIT_FAILURE);
-			}
-		}
-
-		token = strtok(NULL, DELIMITERS);
-	}
-
-	tokens[position] = NULL;
-	return (tokens);
-}
-

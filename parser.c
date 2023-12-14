@@ -15,11 +15,18 @@ char *read_line(void)
 	return (line);
 }
 
-/*parses the line and returns the array of tokens which will be used as arguments*/
+/**
+ * parses the line and returns the array
+ * of tokens which will be used as arguments
+ *
+ *
+ *
+ */
+
 char **parse_line(char *line)
 {
 	unsigned int  bufsize = TOK_BUFSIZE, position = 0;
-	char **tokens = malloc(bufsize* sizeof(char*));
+	char **tokens = malloc(bufsize * sizeof(char *));
 	char *token, **tokens_backup;
 
 	if (!tokens)
@@ -39,7 +46,7 @@ char **parse_line(char *line)
 		{
 			bufsize += TOK_BUFSIZE;
 			tokens_backup = tokens;
-			tokens = realloc(tokens, bufsize* sizeof(char*));
+			tokens = realloc(tokens, bufsize * sizeof(char *));
 			if (!tokens)
 			{
 				free(tokens_backup);

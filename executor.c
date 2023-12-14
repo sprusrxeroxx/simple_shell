@@ -1,7 +1,7 @@
 #include "main.h"
 
 /*array containing a list of the internal functions*/
-char *internals_str[] = { "cd", "clr", "dir", "env", "echo", "help", "_pause", "exit", "set",
+char *internals_str[] = { "cd", "clr", "dir", "env", "echo", "help", "_pause", "exit", "setenv",
 };
 
 /*array containing pointers to each of the internal functions*/

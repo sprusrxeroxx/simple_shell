@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- *own_env - function that prints enviroment variables
+ *my_env - function that prints enviroment variables
  *@args: arguments
  *
  *Return: 1 on success, 0 otherwise

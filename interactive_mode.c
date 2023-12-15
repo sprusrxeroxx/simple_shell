@@ -14,7 +14,7 @@ void interactive_mode(void)
 	int status = -1;
 
 	do {
-	write(STDOUT_FILENO,"$ ", 2);
+	write(STDOUT_FILENO, "$ ", 2);
 	line = read_line();
 	args = tokenizer(line);
 	status = executor(args);
@@ -24,7 +24,7 @@ void interactive_mode(void)
 
 	if (status >= 0)
 	{
-		exit (status);
+		exit(status);
 	}
-	}while (status == -1);
+	} while (status == -1);
 }

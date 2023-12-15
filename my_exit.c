@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- *own_exit - couses normal process termination
+ *my_exit - couses normal process termination
  *@args: empty args
  *
  *Return: 0 to terminate the process

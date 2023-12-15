@@ -8,9 +8,8 @@
 
 int main(void)
 {
-	if (isatty(STDIN_FILENO) == 1){
+	if (isatty(STDIN_FILENO) == 1)
 	interactive_mode();
-	}
 	else
 	{
 		interactive_mode();

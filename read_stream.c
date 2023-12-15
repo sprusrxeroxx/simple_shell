@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * read_stream - read a line 
+ * read_stream - read a line
  *
  * Return: pointer
  */

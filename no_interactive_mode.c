@@ -12,7 +12,7 @@ void no_interactive_mode(void)
 	char **args;
 	int status = -1;
 
-	do{
+	do {
 		line = read_stream();
 		args = tokenizer(line);
 		status = executor(args);
@@ -23,5 +23,5 @@ void no_interactive_mode(void)
 		{
 		exit(status);
 		}
-	}while (status == -1);
+	} while (status == -1);
 }

@@ -3,7 +3,7 @@
 /**
  * read_line - read a line from input
  *
- * Return: pointer to string 
+ * Return: pointer to string
  */
 
 char *read_line(void)

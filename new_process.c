@@ -14,7 +14,7 @@ int new_process(char **args)
 	char *program_path = args[0];
 	char **remaining_args = args + 1;
 	int args_count = sizeof(**args) / sizeof(char *);
-	
+
 
 
 	pid = fork();
@@ -33,9 +33,9 @@ int new_process(char **args)
 	}
 	else
 	{
-		do{
+		do {
 			waitpid(pid, &status, WUNTRACED);
-		}while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
 	return (-1);
 }

@@ -11,7 +11,7 @@ int my_cd(char **args)
 {
 	if (args[1] == NULL)
 	{
-		write(STDERR_FILENO, "expected argument to \"cd\"\n", 32);
+		write(STDERR_FILENO, "expected argument to \"cd\"\n", 24);
 	}
 	else
 	{

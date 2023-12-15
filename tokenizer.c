@@ -16,7 +16,7 @@ char **tokenizer(char *line)
 
 	if (!tokens)
 	{
-		write(STDERR_FILENO, "allocation error in tokenizer: token\n", 34);
+		write(STDERR_FILENO, "allocation error in tokenizer: token\n", 36);
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, TOK_DELIM);
@@ -34,7 +34,7 @@ char **tokenizer(char *line)
 			tokens = realloc(tokens, bufsize * sizeof(char *));
 			if (!tokens)
 			{
-				write(STDERR_FILENO, "reallocation error in tokenizer: tokens", 34);
+				write(STDERR_FILENO, "reallocation error in tokenizer: tokens", 38);
 				exit(EXIT_FAILURE);
 			}
 		}

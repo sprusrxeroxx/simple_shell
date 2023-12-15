@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * new_process - creates a new process
@@ -13,7 +13,7 @@ int new_process(char **args)
 	int status;
 	char *program_path = args[0];
 	char **remaining_args = args + 1;
-	int args_count = sizeof(args) / sizeof(char *)
+	int args_count = sizeof(**args) / sizeof(char *);
 	
 
 

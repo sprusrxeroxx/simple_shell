@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * tokenizer - cut string into parts
@@ -16,11 +16,11 @@ char **tokenizer(char *line)
 
 	if (!tokens)
 	{
-		write(STDERR_FILENO, "allocation error in tokenizer: token\n");
+		write(STDERR_FILENO, "allocation error in tokenizer: token\n", 34);
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, TOK_DELIM);
-	while (toke != NULL)
+	while (token != NULL)
 	{
 		if (token[0] == '#')
 		{
@@ -34,7 +34,7 @@ char **tokenizer(char *line)
 			tokens = realloc(tokens, bufsize * sizeof(char *));
 			if (!tokens)
 			{
-				write(STDERR_FILENO, "reallocation error in tokenizer: tokens");
+				write(STDERR_FILENO, "reallocation error in tokenizer: tokens", 34);
 				exit(EXIT_FAILURE);
 			}
 		}

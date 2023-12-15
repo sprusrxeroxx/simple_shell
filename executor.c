@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 /**
  * executor - checks if cmd is builtin or not
@@ -9,19 +9,22 @@
 
 int executor(char **args)
 {
-	char *builtin_func_list[] = {
-		"cd",
-		"env",
-		"help",
-		"exit"
-	};
-	int (*builtin_func[])(char **) = {
-		&my_cd,
-		&my_env,
-		&my_help,
-		&my_exit
-	};
-	int i = 0;
+
+char *builtin_func_list[] = {
+	"cd",
+	"env",
+	"help",
+	"exit"
+};
+
+int (*builtin_func[])(char **) = {
+	&own_cd,
+	&own_env,
+	&own_help,
+	&own_exit
+};
+
+long unsigned int i = 0;
 
 	if (args[0] == NULL)
 	{

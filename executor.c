@@ -13,15 +13,13 @@ int executor(char **args)
 char *builtin_func_list[] = {
 	"cd",
 	"env",
-	"help",
 	"exit"
 };
 
 int (*builtin_func[])(char **) = {
-	&own_cd,
-	&own_env,
-	&own_help,
-	&own_exit
+	&my_cd,
+	&my_env,
+	&my_exit
 };
 
 long unsigned int i = 0;

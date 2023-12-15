@@ -28,10 +28,9 @@ int new_process(char **args);
 char *read_stream(void);
 
 /*<---BUILTIN FUNC--->*/
-int own_cd(char **args);
-int own_exit(char **args);
-int own_env(char **args);
-int own_help(char **args);
+int my_cd(char **args);
+int my_exit(char **args);
+int my_env(char **args);
 
 #endif
 

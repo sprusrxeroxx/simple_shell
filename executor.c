@@ -22,7 +22,7 @@ int (*builtin_func[])(char **) = {
 	&my_exit
 };
 
-	int i = 0;
+	long unsigned int i = 0;
 
 	if (args[0] == NULL)
 	{

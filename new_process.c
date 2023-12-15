@@ -11,17 +11,13 @@ int new_process(char **args)
 {
 	pid_t pid;
 	int status;
-	char *program_path = args[0];
-	char **remaining_args = args + 1;
-	int args_count = sizeof(**args) / sizeof(char *);
 
 
 
 	pid = fork();
-	remaining_args[args_count - 1] = NULL;
 	if (pid == 0)
 	{
-		if (execve(program_path, remaining_args, environ) == -1)
+		if (execvp(args[0], args) == -1)
 		{
 			perror("error in new_process: child process");
 		}

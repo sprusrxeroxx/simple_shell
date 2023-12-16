@@ -7,27 +7,16 @@
  *@n: the amount of characters to be copied
  *Return: the concatenated string
  */
-char *_strncpy(char *dest, char *src, int n)
-{
-	int i, j;
-	char *s = dest;
-
-	i = 0;
-	while (src[i] != '\0' && i < n - 1)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	if (i < n)
-	{
-		j = i;
-		while (j < n)
-		{
-			dest[j] = '\0';
-			j++;
-		}
-	}
-	return (s);
+char *_strncpy(char *dest, char *src, int n) {
+  int i;
+  for (i = 0; i < n && src[i] != '\0'; ++i) {
+    dest[i] = src[i];
+  }
+  /* Zero-pad the remaining space if necessary*/
+  for (; i < n; ++i) {
+    dest[i] = '\0';
+  }
+  return dest;
 }
 
 /**
@@ -37,24 +26,21 @@ char *_strncpy(char *dest, char *src, int n)
  *@n: the amount of bytes to be maximally used
  *Return: the concatenated string
  */
-char *_strncat(char *dest, char *src, int n)
-{
-	int i, j;
-	char *s = dest;
-
-	i = 0;
-	j = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[j] != '\0' && j < n)
-	{
-		dest[i] = src[j];
-		i++;
-		j++;
-	}
-	if (j < n)
-		dest[i] = '\0';
-	return (s);
+char *_strncat(char *dest, char *src, int n) {
+  int i = 0, j;
+  /* Find the end of the destination string*/
+  while (dest[i] != '\0') {
+    ++i;
+  }
+  /* Concatenate the source string until either null byte is reached or limit is hit*/
+  for (j = 0; j < n && src[j] != '\0'; ++j, ++i) {
+    dest[i] = src[j];
+  }
+  /* Ensure null termination if necessary*/
+  if (j < n) {
+    dest[i] = '\0';
+  }
+  return dest;
 }
 
 /**
